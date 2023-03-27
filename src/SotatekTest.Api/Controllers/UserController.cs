@@ -41,5 +41,37 @@ namespace SotatekTest.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] InsertUserDto model)
+        {
+            try
+            {
+                await _mediator.Send(new UpdateUserCommand(id,model));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            try
+            {
+                await _mediator.Send(new DeleteUserCommand(id));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
