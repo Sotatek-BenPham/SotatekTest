@@ -24,10 +24,10 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-
+        working-directory: src/SotatekTest.Api
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+        working-directory: src/SotatekTest.Api
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
