@@ -44,11 +44,34 @@ namespace SotatekTest.Application.Features.Queries.User
 
                 if (!string.IsNullOrEmpty(request.filter.SortBy))
                 {
-                    var sortField = typeof(Domain.Entities.User).GetProperty(request.filter.SortBy);
-                    if (sortField != null)
+                    switch (request.filter.SortBy.ToLower())
                     {
-                        orderBy =  q => q.OrderByDescending(u => sortField.GetValue(u));
-                    }
+                        case "email": 
+                            {
+                                orderBy = q => q.OrderByDescending(x => x.Email);
+                                break;
+                            }
+                        case "phone":
+                            {
+                                orderBy = q => q.OrderByDescending(x => x.Phone);
+                                break;
+                            }
+                        case "fullname":
+                            {
+                                orderBy = q => q.OrderByDescending(x => x.FullName);
+                                break;
+                            }
+                        case "age":
+                            {
+                                orderBy = q => q.OrderByDescending(x => x.Age);
+                                break;
+                            }
+                        default: 
+                            {
+                                orderBy = q => q.OrderByDescending(x => x.Id);
+                                break;
+                            }
+                    }                   
                 }
             }
             var userList = await _unitOfWork.GetRepository<Domain.Entities.User>().GetAsync(predicate, orderBy, includes);
