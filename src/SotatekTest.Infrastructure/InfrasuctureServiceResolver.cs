@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SotatekTest.Domain.Common;
 using SotatekTest.Infrastructure.Repositories;
 using SotatekTest.Infrastructure.Services;
+using SotatekTest.Application.Interfaces.Services;
 
 namespace SotatekTest.Infrastructure
 {

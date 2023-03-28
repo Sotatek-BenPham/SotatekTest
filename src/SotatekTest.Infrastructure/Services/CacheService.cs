@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
+using SotatekTest.Application.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
